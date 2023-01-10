@@ -1,9 +1,7 @@
 import Head from 'next/head'
-import { useState } from "react"
+import HelperTooltip from "../../src/components/HelperTooltip";
 
 export default function OProjektu() {
-	const [formulaLegendOpen, setFormulaLegendOpen] = useState(false);
-
 	return (
 		<main className="h-full flex flex-col items-center gap-6">
 			<Head>
@@ -13,23 +11,40 @@ export default function OProjektu() {
 			<section className="flex flex-col gap-6">
 				<article>
 					<h2 className="text-2xl font-bold">Jak počítáme?</h2>
-					<p>Promile = (Objem * Obsah alkoholu * 0.8 / 100) / (Váha * Voda v těle)</p>
-					<p>Počet hodin do vystřízlivění = (Objem * Obsah alkoholu * 0.8 / 100) - (x hodin * Odbourávání alkoholu za hodinu * Váha)</p>
 
-					<button onClick={() => setFormulaLegendOpen(!formulaLegendOpen)} className="text-accent hover:text-accent-light transition-all">{formulaLegendOpen ? "Skrýt legendu" : "Zobrazit legendu"}</button>
-
-					{formulaLegendOpen && (
-						<span className="mt-2 mb-4 p-2 w-fit flex flex-col gap-1 dark:bg-accent-dark dark:border-accent-light rounded-lg rounded-t-none">
-							<p>Obsah alkoholu = Obsah alkoholu [%]</p>
-							<p>Objem = Množství alkoholu [ml]</p>
-							<p>0.8 = Hustota alkoholu</p>
-							<p>Trvání pití = Čas po který jste pil/a [h]</p>
-							<p>Odbourávání alkoholu za hodinu = Alkohol, který lidské tělo dokáže rozložit. muži: 0.1; ženy: 0.085 [g/h]</p>
-							<p>Váha = Vaše váha [kg]</p>
-							<p>Voda v těle = Množství vody v těle [%]</p>
-							<p>X hodin = Počet hodin potřebný k vystřízlivění</p>
-						</span>
-					)}
+					<p>
+						<HelperTooltip title="Počet promile alkoholu v krvi [‰]" text="Alkohol v krvi" placement="top" />
+						{" = ("}
+						<HelperTooltip title="Množství nápoje [ml]" text="Objem" placement="top" />
+						{" * "}
+						<HelperTooltip title="Obsah alkoholu v nápoji [%]" text="Alkohol" placement="top" />
+						{" * "}
+						<HelperTooltip title="Hustota alkoholu - konstanta" text="0.8" placement="top" />
+						{" / "}
+						<HelperTooltip title="Procenta převedeny na desetinné číslo" text="100" placement="top" />
+						{") / ("}
+						<HelperTooltip title="Vaše váha [kg]" text="Váha" placement="top" />
+						{" * "}
+						<HelperTooltip title="Množství vody v těle [%]" text="Voda v těle" placement="top" />
+						{")"}
+					</p>
+					<p>
+						{"Počet hodin do vystřízlivění = ("}
+						<HelperTooltip title="Množství nápoje [ml]" text="Objem" />
+						{" * "}
+						<HelperTooltip title="Obsah alkoholu v nápoji [%]" text="Alkohol" />
+						{" * "}
+						<HelperTooltip title="Hustota alkoholu - konstanta" text="0.8" />
+						{" / "}
+						<HelperTooltip title="Procenta převedeny na desetinné číslo" text="100" />
+						{") - ("}
+						<HelperTooltip title="Čas potřebný k vystřízlivění [h]" text="x hodin" />
+						{" * "}
+						<HelperTooltip title="Alkohol, který lidské tělo dokáže rozložit. muži: 0.1; ženy: 0.085 [g/h]" text="Odbouráváno za hodinu" />
+						{" * "}
+						<HelperTooltip title="Vaše váha [kg]" text="Váha" />
+						{")"}
+					</p>
 				</article>
 
 				<article>
@@ -45,12 +60,13 @@ export default function OProjektu() {
 				<article>
 					<h2 className="text-2xl font-bold">Jaká je přesnost dat?</h2>
 					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, veniam saepe omnis magnam maiores ab, expedita quibusdam hic in libero ipsam natus animi. Excepturi accusantium, nesciunt corrupti sed voluptatum impedit, officia ipsum dicta, nihil rem magnam ab. Tempore totam nostrum veniam non repudiandae, tempora fuga.
+						Snažíme se poskytovat co nejpřsnější data z Vámi poskytnutých informací. Je důležité vyplnit požadavaná data co nejpřesněji, jelikož každý faktor ovlivňuje výsledek.
+						Pro největší přesnost je však nejlepší zakoupit alkoholmetr, který je nejpřesnějším řešení. Veškeré odpovědnosti za zkreslené výsledky se zříkáme.
 					</p>
 				</article>
 
 				<h2 className="mt-8 text-2xl font-bold">Děkujeme Vám za využívání této webové aplikace!</h2>
 			</section>
-		</main>
+		</main >
 	)
 }
