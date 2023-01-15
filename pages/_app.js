@@ -23,7 +23,7 @@ export default function MyApp({ Component, pageProps }) {
 			<Navigation />
 
 			{/* main content */}
-			<div className="px-4 lg:px-12 xl:px-20 pt-20 pb-12 grow transition-all">
+			<div className="px-4 lg:px-12 xl:px-20 pt-20 pb-12 grow transition-all mx-auto max-w-screen-2xl">
 				<Component {...pageProps} />
 			</div>
 

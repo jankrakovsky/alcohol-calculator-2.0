@@ -4,7 +4,7 @@ import ImageParty from '../src/images/party.svg'
 
 export default function Home() {
 	return (
-		<main className="mx-auto h-full max-w-screen-2xl flex flex-col justify-center items-center">
+		<main className="h-full flex flex-col justify-center items-center">
 			<section className="w-full grid gap-4 grid-cols-1 md:grid-cols-2 items-center">
 				<div className="flex flex-col gap-6 justify-center">
 					<h1 className="text-6xl text-accent dark:text-accent-light">Jsem Váš osobní rádce na alkohol!</h1>
