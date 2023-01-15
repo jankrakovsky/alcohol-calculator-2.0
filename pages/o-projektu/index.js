@@ -3,14 +3,14 @@ import HelperTooltip from "../../src/components/HelperTooltip";
 
 export default function OProjektu() {
 	return (
-		<main className="h-full flex flex-col items-center gap-6">
+		<main className="h-full">
 			<Head>
 				<title>O projektu | Alkohol kalkulačka</title>
 			</Head>
 
 			<section className="flex flex-col gap-6">
 				<article>
-					<h2 className="text-2xl font-bold">Jak počítáme?</h2>
+					<h2 className="mb-4 text-2xl font-bold">Jak počítáme?</h2>
 
 					<p>
 						<HelperTooltip title="Počet promile alkoholu v krvi [‰]" text="Alkohol v krvi" placement="top" />
