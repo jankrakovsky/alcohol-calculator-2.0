@@ -1,9 +1,10 @@
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Button from '@mui/material/Button';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
-const Navigation = ({ mobileNavOpen, setMobileNavOpen, ...props }) => {
+const Navigation = () => {
 	/* links for navbar */
 	const links = [
 		{
@@ -20,9 +21,24 @@ const Navigation = ({ mobileNavOpen, setMobileNavOpen, ...props }) => {
 		},
 	];
 
+	/* open/close mobile burger menu */
+	const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
+	/* choose the screen size */
+	const handleResize = () => {
+		if (window.innerWidth > 640) {
+			setMobileNavOpen(false)
+		}
+	}
+
+	// create an event listener
+	useEffect(() => {
+		window.addEventListener("resize", handleResize)
+	})
+
 	return (
 		/* navbar wrapper that centers navbar content */
-		<section className={`w-screen sm:w-auto h-screen sm:h-auto fixed sm:static left-0 top-0 sm:flex sm:justify-center ${mobileNavOpen && "bg-accent-light/25 dark:bg-accent-dark/25"}`} {...props}>
+		<section className={`w-full h-full sm:h-auto fixed sm:static left-0 top-0 sm:flex sm:justify-center ${mobileNavOpen && "bg-accent-light/25 dark:bg-accent-dark/25 backdrop-blur"}`}>
 			{mobileNavOpen ? (
 				/* close navigation button for mobile */
 				<Button className="fixed right-0 top-0 p-6 text-accent hover:text-accent-dark dark:hover:text-accent-light hover:bg-transparent" onClick={() => setMobileNavOpen(false)}>
@@ -30,7 +46,7 @@ const Navigation = ({ mobileNavOpen, setMobileNavOpen, ...props }) => {
 				</Button>
 			) : (
 				/* open navigation button for mobile */
-				<Button className="sm:hidden fixed right-0 top-0 p-6 text-accent hover:text-accent-dark dark:hover:text-accent-light hover:bg-transparent" onClick={() => setMobileNavOpen(true)}>
+				<Button className="sm:hidden fixed right-0 top-0 p-6 text-accent hover:text-accent-dark dark:hover:text-accent-light hover:bg-light hover:dark:bg-dark rounded-bl-lg" onClick={() => setMobileNavOpen(true)}>
 					<MenuRoundedIcon />
 				</Button>
 			)}

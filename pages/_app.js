@@ -1,31 +1,14 @@
 import Head from "next/head";
 import '../styles/globals.css';
-import { useState, useEffect } from "react";
 import Navigation from "../src/components/Navigation";
 
 export default function MyApp({ Component, pageProps }) {
 	/* current year to display in footer */
 	const currentYear = new Date().getFullYear();
 
-	/* open/close mobile burger menu */
-	const [mobileNavOpen, setMobileNavOpen] = useState(false);
-
-	/* choose the screen size */
-	const handleResize = () => {
-		if (window.innerWidth > 640) {
-			setMobileNavOpen(false)
-		}
-	}
-
-	// create an event listener
-	useEffect(() => {
-		window.addEventListener("resize", handleResize)
-	})
-
-
 	return (
 		/* same for all pages */
-		<div className="h-full flex flex-col dark:text-gray-200 bg-light dark:bg-dark">
+		<div className="h-full flex flex-col">
 			{/* header */}
 			<Head>
 				<title>Alkohol kalkulačka</title>
@@ -37,15 +20,15 @@ export default function MyApp({ Component, pageProps }) {
 				<link rel="manifest" href="/icon/site.webmanifest" />
 			</Head>
 
-			<Navigation mobileNavOpen={mobileNavOpen} setMobileNavOpen={setMobileNavOpen} />
+			<Navigation />
 
 			{/* main content */}
-			<div className={`mt-12 p-4 pb-20 lg:px-12 xl:px-20 grow dark:bg-dark transition-all ${mobileNavOpen && "blur"}`}>
+			<div className="px-4 lg:px-12 xl:px-20 pt-20 pb-12 grow transition-all">
 				<Component {...pageProps} />
 			</div>
 
 			{/* footer */}
-			<footer className={`p-4 w-full fixed bottom-0 text-dark dark:text-light bg-light dark:bg-dark border-t-2 border-solid border-accent-light dark:border-accent text-center ${mobileNavOpen && "blur"}`}>
+			<footer className="p-4 w-full border-t-2 border-solid border-accent-light dark:border-accent text-center">
 				<p>Copyright © {currentYear} | Alkohol kalkulačka - Všechna práva vyhrazena</p>
 			</footer>
 		</div >
