@@ -1,0 +1,301 @@
+[
+	{
+		"id": "beer10small",
+		"name": "Malé pivo 10°",
+		"keywords": [
+			"pivo",
+			"pivko",
+			"desítka"
+		],
+		"image": "/images/drinks/beerSmall.png",
+		"volume": 300,
+		"alcoholVolume": 4
+	},
+	{
+		"id": "beer11small",
+		"name": "Malé pivo 11°",
+		"keywords": [
+			"pivo",
+			"pivko",
+			"jedenáctka"
+		],
+		"image": "/images/drinks/beerSmall.png",
+		"volume": 300,
+		"alcoholVolume": 4.5
+	},
+	{
+		"id": "beer12small",
+		"name": "Malé pivo 12°",
+		"keywords": [
+			"pivo",
+			"pivko",
+			"dvanáctka"
+		],
+		"image": "/images/drinks/beerSmall.png",
+		"volume": 300,
+		"alcoholVolume": 5
+	},
+	{
+		"id": "beer10",
+		"name": "Pivo 10°",
+		"keywords": [
+			"pivo",
+			"pivko",
+			"desítka"
+		],
+		"image": "/images/drinks/beerBig.png",
+		"volume": 500,
+		"alcoholVolume": 4
+	},
+	{
+		"id": "beer11",
+		"name": "Pivo 11°",
+		"keywords": [
+			"pivo",
+			"pivko",
+			"jedenáctka"
+		],
+		"image": "/images/drinks/beerBig.png",
+		"volume": 500,
+		"alcoholVolume": 4.5
+	},
+	{
+		"id": "beer12",
+		"name": "Pivo 12°",
+		"keywords": [
+			"pivo",
+			"pivko",
+			"dvanáctka"
+		],
+		"image": "/images/drinks/beerBig.png",
+		"volume": 500,
+		"alcoholVolume": 5
+	},
+	{
+		"id": "wine",
+		"name": "Víno",
+		"keywords": [
+			"víno",
+			"vínko",
+			"vínečko"
+		],
+		"image": "/images/drinks/wineRed.png",
+		"volume": 500,
+		"alcoholVolume": 15
+	},
+	{
+		"id": "vodka",
+		"name": "Vodka",
+		"keywords": [
+			"vodka",
+			"42",
+			"Absolut",
+			"Amundsen vodka",
+			"Beluga vodka",
+			"Belvedere vodka",
+			"Bismarck vodka",
+			"Bols vodka",
+			"Boris vodka",
+			"Božkov vodka",
+			"Cîroc",
+			"Danzka vodka"
+		],
+		"image": "/images/drinks/shotWhite.png",
+		"volume": 20,
+		"alcoholVolume": 42
+	},
+	{
+		"id": "peppermint",
+		"name": "Peppermint",
+		"keywords": [
+			"zelená",
+			"ústní voda"
+		],
+		"image": "/images/drinks/shotGreen.png",
+		"volume": 20,
+		"alcoholVolume": 19
+	},
+	{
+		"id": "bozkovOriginal",
+		"name": "Božkov Original",
+		"keywords": [
+			"rum",
+			"cola"
+		],
+		"image": "/images/drinks/ShotYellow.png",
+		"volume": 20,
+		"alcoholVolume": 37.5
+	},
+	{
+		"id": "malibu",
+		"name": "Malibu",
+		"keywords": [
+			"rum",
+			"cola"
+		],
+		"image": "/images/drinks/shotWhite.png",
+		"volume": 20,
+		"alcoholVolume": 21
+	},
+	{
+		"id": "becherovkaOriginal",
+		"name": "Becherovka Original",
+		"keywords": [
+			"becher",
+			"becherovka",
+			"bylinky"
+		],
+		"image": "/images/drinks/brandyChocolate.png",
+		"volume": 20,
+		"alcoholVolume": 38
+	},
+	{
+		"id": "martini",
+		"name": "Martini",
+		"keywords": [
+			"gin",
+			"vermouth",
+			"koktejl"
+		],
+		"image": "/images/drinks/wineWhite.png",
+		"volume": 20,
+		"alcoholVolume": 15
+	},
+	{
+		"id": "beefeaterGin",
+		"name": "Beefeater Gin",
+		"keywords": [
+			"gin",
+			"tonik",
+			"koktejl"
+		],
+		"image": "/images/drinks/shotYellow.png",
+		"volume": 20,
+		"alcoholVolume": 40
+	},
+	{
+		"id": "fernetStockOriginal",
+		"name": "Fernet Stock Original",
+		"keywords": [
+			"fernet",
+			"stock",
+			"bylinky"
+		],
+		"image": "/images/drinks/shotWine.png",
+		"volume": 20,
+		"alcoholVolume": 38
+	},
+	{
+		"id": "grantsWhiskey",
+		"name": "Grant's Whiskey",
+		"keywords": [
+			"whiskey",
+			"grantska"
+		],
+		"image": "/images/drinks/whiskey.png",
+		"volume": 20,
+		"alcoholVolume": 40
+	},
+	{
+		"id": "metaxa5*",
+		"name": "Metaxa 5*",
+		"keywords": [
+			"metaxa",
+			"whiskey",
+			"5"
+		],
+		"image": "/images/drinks/whiskey.png",
+		"volume": 20,
+		"alcoholVolume": 38
+	},
+	{
+		"id": "metaxa7*",
+		"name": "Metaxa 7*",
+		"keywords": [
+			"metaxa",
+			"whiskey",
+			"7"
+		],
+		"image": "/images/drinks/whiskey.png",
+		"volume": 20,
+		"alcoholVolume": 40
+	},
+	{
+		"id": "metaxa12*",
+		"name": "Metaxa 12*",
+		"keywords": [
+			"metaxa",
+			"whiskey",
+			"12"
+		],
+		"image": "/images/drinks/whiskey.png",
+		"volume": 20,
+		"alcoholVolume": 40
+	},
+	{
+		"id": "jagermeister",
+		"name": "Jägermeister",
+		"keywords": [
+			"Jager",
+			"bylinky"
+		],
+		"image": "/images/drinks/brandyChocolate.png",
+		"volume": 20,
+		"alcoholVolume": 35
+	},
+	{
+		"id": "baileysChocolatLuxe",
+		"name": "Baileys Chocolat Luxe",
+		"keywords": [
+			"Baileys",
+			"čokoláda",
+			"sladké"
+		],
+		"image": "/images/drinks/brandyMilk.png",
+		"volume": 100,
+		"alcoholVolume": 15
+	},
+	{
+		"id": "artSpritz",
+		"name": "ArtSpritz",
+		"keywords": [
+			"Aperol",
+			"koktejl",
+			"ovoce"
+		],
+		"image": "/images/drinks/aperol.png",
+		"volume": 100,
+		"alcoholVolume": 11
+	},
+	{
+		"id": "bombardino",
+		"name": "Bombardino",
+		"keywords": [
+			"Bombardino",
+			"koktejl"
+		],
+		"image": "/images/drinks/shotYellow.png",
+		"volume": 100,
+		"alcoholVolume": 16
+	},
+	{
+		"id": "cointreau",
+		"name": "Cointreau",
+		"keywords": [
+			"koktejl"
+		],
+		"image": "/images/drinks/brandyChocolate.png",
+		"volume": 20,
+		"alcoholVolume": 40
+	},
+	{
+		"id": "mead",
+		"name": "Mead",
+		"keywords": [
+			"koktejl"
+		],
+		"image": "/images/drinks/brandyChocolate.png",
+		"volume": 100,
+		"alcoholVolume": 12
+	}
+]
