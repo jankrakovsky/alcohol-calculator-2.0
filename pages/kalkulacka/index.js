@@ -65,7 +65,7 @@ export default function Kalkulacka() {
     };
 
 
-    const result = useMemo(() => countTotalAlcoholInBody(), [userData, consumedDrinks, countTotalAlcoholInBody]);
+    const result = useMemo(() => countTotalAlcoholInBody(), [consumedDrinks, userData]);
 
     return (
         <main className="h-full">
