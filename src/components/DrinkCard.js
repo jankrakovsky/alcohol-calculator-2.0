@@ -38,12 +38,12 @@ const DrinkCard = ({ drink, setDrink }) => {
                     {/* remove one drink */}
                     <Button
                         className="text-xl text-dark dark:text-light bg-accent dark:bg-accent-dark hover:bg-light dark:hover:bg-dark rounded-lg"
-                        onClick={() => setDrink(drink.id, drink.count - 1)}>-</Button>
+                        onClick={() => setDrink(drink.id, -1)}>-</Button>
                     {/* add one more drink */}
                     <span className="pl-2 pr-2">{drink.count}</span>
                     <Button
                         className="text-xl text-dark dark:text-light bg-accent dark:bg-accent-dark hover:bg-light dark:hover:bg-dark rounded-lg"
-                        onClick={() => setDrink(drink.id, drink.count + 1)}>+</Button>
+                        onClick={() => setDrink(drink.id, 1)}>+</Button>
                 </div>
             </div>
         </Card>
