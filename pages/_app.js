@@ -1,6 +1,6 @@
 import Head from "next/head";
 import '../styles/globals.css';
-import Navigation from "../src/components/Navigation";
+import NavBar from "../src/components/NavBar";
 import {StyledEngineProvider} from "@mui/material";
 
 export default function MyApp({Component, pageProps}) {
@@ -22,7 +22,7 @@ export default function MyApp({Component, pageProps}) {
                     <link rel="manifest" href="/icon/site.webmanifest"/>
                 </Head>
 
-                <Navigation/>
+                <NavBar/>
 
                 {/* main content */}
                 <div className="px-4 lg:px-12 xl:px-20 pt-20 pb-12 grow transition-all mx-auto max-w-screen-2xl">

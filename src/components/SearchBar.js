@@ -1,7 +1,7 @@
 import {useState} from "react";
 import DrinkRow from "./DrinkRow";
 
-const Search = ({drinks, setDrink}) => {
+const SearchBar = ({drinks, setDrink}) => {
     const [query, setQuery] = useState("");
 
     /* return all drinks if query is empty, otherwise filters only the ones with match in keywords */
@@ -27,4 +27,4 @@ const Search = ({drinks, setDrink}) => {
     );
 }
 
-export default Search;
+export default SearchBar;
