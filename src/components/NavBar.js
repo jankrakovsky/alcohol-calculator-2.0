@@ -6,8 +6,11 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import {useAuthState} from "react-firebase-hooks/auth";
 import {auth, provider} from "../firebase/firebaseApp";
 import {signInWithPopup, signOut} from "firebase/auth";
+import Image from "next/image";
+import HelperTooltip from "./HelperTooltip";
+import {AccountCircle} from "@mui/icons-material";
 
-const Navigation = () => {
+const NavBar = () => {
     /* links for navbar */
     const links = useMemo(
         () => [
@@ -63,7 +66,7 @@ const Navigation = () => {
 
             {/* navbar */}
             <nav
-                className={`p-6 pb-4 w-screen h-screen sm:h-auto ${mobileNavOpen ? "flex" : "hidden"} sm:flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-x-12 border-b-2 border-solid border-transparent sm:border-accent-light sm:dark:border-accent-dark`}>
+                className={`p-6 pb-4 w-full h-screen sm:h-auto ${mobileNavOpen ? "flex" : "hidden"} sm:flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-x-12 border-b-2 border-solid border-transparent sm:border-accent-light sm:dark:border-accent-dark`}>
                 {/* array map links */}
                 {links.map((link, i) => (
                     <Link
@@ -73,17 +76,41 @@ const Navigation = () => {
 
                 {/* login/logout button */}
                 {user ? (
-                    <Link
-                        className="dark:text-light hover:text-accent text-xl sm:text-base border-solid border-b-2 border-transparent hover:border-accent transition-colors duration-300"
-                        href="#" onClick={() => signOut(auth)}>Odhlásit {user.email}</Link>
+                    <HelperTooltip
+                        className="group"
+                        title={`Odhlásit ${user.displayName}`}
+                        onClick={() => signOut(auth)}
+                    >
+                        <Button
+                            variant="ghost"
+                            className="hover:bg-transparent dark:hover:bg-transparent rounded-full"
+                        >
+                            <Image
+                                className="rounded-full ring ring-transparent group-hover:ring-accent transition duration-300"
+                                src={user.photoURL}
+                                alt={user.displayName}
+                                width={28}
+                                height={28}
+                            />
+                        </Button>
+                    </HelperTooltip>
                 ) : (
-                    <Link
-                        className="dark:text-light hover:text-accent text-xl sm:text-base border-solid border-b-2 border-transparent hover:border-accent transition-colors duration-300"
-                        href="#" onClick={() => signInWithPopup(auth, provider)}>Přihlásit se</Link>
+                    <HelperTooltip
+                        className="group"
+                        title={`Přihlásit se`}
+                        onClick={() => signInWithPopup(auth, provider)}
+                    >
+                        <Button
+                            variant="ghost"
+                            className="hover:bg-transparent dark:hover:bg-transparent rounded-full"
+                        >
+                            <AccountCircle fontSize="medium" className="text-accent"/>
+                        </Button>
+                    </HelperTooltip>
                 )}
             </nav>
         </section>
     );
 }
 
-export default Navigation;
+export default NavBar;
