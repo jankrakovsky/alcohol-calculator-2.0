@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
-/* FIXME: Find a way to use image optimization with Firebase Hosting */
 const nextConfig = {
+	/* TODO: Find a way to use image optimization with Firebase Hosting */
 	reactStrictMode: true,
 	images: {
 		unoptimized: true,
-		domains: ['*.googleusercontent.com'],
+		domains: ['*.googleapis.com', '*.googleusercontent.com'],
 	},
-}
+};
 
 module.exports = nextConfig;

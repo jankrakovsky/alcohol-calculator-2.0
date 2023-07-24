@@ -1,0 +1,4 @@
+.firebase
+.next
+*.d.ts
+.gitignore
