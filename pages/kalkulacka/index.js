@@ -1,55 +1,20 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import Head from 'next/head';
 import { addMinutes, format } from 'date-fns';
-import { doc, getDoc } from 'firebase/firestore';
-import { useAuthState } from 'react-firebase-hooks/auth';
 
 import DrinkCard from '../../src/components/DrinkCard';
 import SearchBar from '../../src/components/SearchBar';
 import UserInfo from '../../src/components/UserInfo';
 import allDrinks from '../../src/drinks.json';
-import { auth, db } from '../../src/firebase/firebaseApp';
+import useNow from '../../src/hooks/useNow';
+import useUserSettings from '../../src/hooks/useUserSettings';
 
 export default function Kalkulacka() {
-	const [user, loading] = useAuthState(auth);
-	const now = new Date();
-
-	// FIXME: This API call is totally not okay. Fix ASAP.
-	const getUserData = async () => {
-		if (!user) {
-			console.log("User isn't logged in!");
-			return undefined;
-		}
-
-		const docRef = doc(db, `profiles/${user.uid}`);
-		const docSnap = await getDoc(docRef);
-
-		if (docSnap.exists()) {
-			const userData = docSnap.data();
-			console.log('User data: ', userData);
-			return {
-				gender: userData.gender,
-				weight: userData.weight,
-			};
-		} else {
-			console.log('User data does not exist!');
-			return null;
-		}
-	};
+	const now = useNow();
+	const { data, loading, errorCode } = useUserSettings();
 
 	const [consumedDrinks, setConsumedDrinks] = useState([]);
 	const [userData, setUserData] = useState({ time: now });
-	const [userLoading, setUserLoading] = useState(true);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			const dbUserData = await getUserData();
-			setUserData((prevUserData) => ({ ...prevUserData, ...dbUserData }));
-			setUserLoading(false);
-		};
-
-		if (!loading) fetchData();
-	}, [loading]);
 
 	const countTimeWhenSober = useCallback(
 		(totalAlcoholInBody, alcoholPerHour) => {
@@ -62,7 +27,7 @@ export default function Kalkulacka() {
 			}
 			return now;
 		},
-		[userData.time, userData.weight],
+		[now, userData.time, userData.weight],
 	);
 
 	const countTotalAlcoholInBody = useCallback(() => {
@@ -132,7 +97,7 @@ export default function Kalkulacka() {
 				<article>
 					<h2 className="mb-4 text-2xl font-bold">Uživatelská data</h2>
 
-					{!userLoading ? <UserInfo userData={userData} setUserData={setUserData} /> : <p>Načítám</p>}
+					{!loading ? <UserInfo userData={data} /> : <p>Načítám</p>}
 				</article>
 
 				{perMile > 0 && (

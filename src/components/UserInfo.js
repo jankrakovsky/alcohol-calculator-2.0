@@ -1,9 +1,11 @@
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import { format } from 'date-fns';
 import { doc, setDoc } from 'firebase/firestore';
+
+import 'rc-time-picker/assets/index.css';
+import moment from 'moment';
+import TimePicker from 'rc-time-picker';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
 import { auth, db } from '../firebase/firebaseApp';
 
@@ -12,19 +14,16 @@ const UserInfo = ({ userData, setUserData }) => {
 	const {
 		register,
 		handleSubmit,
+		control,
 		formState: { dirtyFields },
 	} = useForm({
-		defaultValues: {
-			...userData,
-			time: format(userData.time, 'HH:mm'),
-		},
+		defaultValues: userData,
 	});
 
 	const onSubmit = async (data) => {
 		setUserData((prevUserData) => ({
 			...prevUserData,
 			...data,
-			time: format(data.time, 'HH:mm'),
 		}));
 		const profileRef = doc(db, `profiles/${user.uid}`);
 
@@ -59,7 +58,7 @@ const UserInfo = ({ userData, setUserData }) => {
 					<input
 						className="w-16 rounded-md p-2 focus:outline-none dark:bg-dark dark:text-light dark:placeholder-gray-300"
 						placeholder="váha"
-						{...register('weight')}
+						{...register('weight', { required: true })}
 					/>
 					<span className="dark:text-dark">kg</span>
 				</div>
@@ -69,17 +68,22 @@ const UserInfo = ({ userData, setUserData }) => {
 			<article className="flex w-80 flex-col justify-between gap-2 rounded-md bg-accent-light p-2 dark:bg-accent">
 				<label className="dark:text-dark">Kdy jste skončili s konzumací alkoholu?</label>
 				<div className="flex items-center gap-2">
-					<TextField
-						id="time"
-						type="time"
-						InputLabelProps={{
-							shrink: true,
+					<Controller
+						control={control}
+						rules={{
+							required: true,
 						}}
-						inputProps={{
-							step: 300, // 5 min
-						}}
-						sx={{ width: '150px' }}
-						{...register('time')}
+						render={({ field: { onChange, onBlur, value } }) => (
+							<TimePicker
+								showSecond={false}
+								minuteStep={15}
+								allowEmpty={false}
+								onBlur={onBlur}
+								onChange={(val) => onChange(val ? val.toDate() : null)}
+								value={moment(value)}
+							/>
+						)}
+						name="time"
 					/>
 				</div>
 			</article>
