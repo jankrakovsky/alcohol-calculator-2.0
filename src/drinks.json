@@ -88,7 +88,7 @@
 		"id": "bozkovOriginal",
 		"name": "Božkov Original",
 		"keywords": ["rum", "cola"],
-		"image": "/images/drinks/ShotYellow.png",
+		"image": "/images/drinks/shotYellow.png",
 		"volume": 20,
 		"alcoholVolume": 37.5
 	},
