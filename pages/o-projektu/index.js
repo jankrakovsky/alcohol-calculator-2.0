@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import HelperTooltip from '../../src/components/HelperTooltip';
+import Tooltip from '../../src/components/Tooltip';
 
 export default function OProjektu() {
 	return (
@@ -14,39 +14,36 @@ export default function OProjektu() {
 					<h2 className="mb-4 text-2xl font-bold">Výpočet</h2>
 
 					<p>
-						<HelperTooltip title="Počet promile alkoholu v krvi [‰]" text="Alkohol v krvi" placement="top" />
+						<Tooltip title="Počet promile alkoholu v krvi [‰]" text="Alkohol v krvi" placement="top" />
 						{' = ('}
-						<HelperTooltip title="Množství nápoje [ml]" text="Objem" placement="top" />
+						<Tooltip title="Množství nápoje [ml]" text="Objem" placement="top" />
 						{' * '}
-						<HelperTooltip title="Obsah alkoholu v nápoji [%]" text="Alkohol" placement="top" />
+						<Tooltip title="Obsah alkoholu v nápoji [%]" text="Alkohol" placement="top" />
 						{' * '}
-						<HelperTooltip title="Hustota alkoholu - konstanta" text="0.8" placement="top" />
+						<Tooltip title="Hustota alkoholu - konstanta" text="0.8" placement="top" />
 						{' / '}
-						<HelperTooltip title="Procenta převedeny na desetinné číslo" text="100" placement="top" />
+						<Tooltip title="Procenta převedeny na desetinné číslo" text="100" placement="top" />
 						{') / ('}
-						<HelperTooltip title="Vaše váha [kg]" text="Váha" placement="top" />
+						<Tooltip title="Vaše váha [kg]" text="Váha" placement="top" />
 						{' * '}
-						<HelperTooltip title="Množství vody v těle [%]" text="Voda v těle" placement="top" />
+						<Tooltip title="Množství vody v těle [%]" text="Voda v těle" placement="top" />
 						{')'}
 					</p>
 					<p>
 						{'Počet hodin do vystřízlivění = ('}
-						<HelperTooltip title="Množství nápoje [ml]" text="Objem" />
+						<Tooltip title="Množství nápoje [ml]" text="Objem" />
 						{' * '}
-						<HelperTooltip title="Obsah alkoholu v nápoji [%]" text="Alkohol" />
+						<Tooltip title="Obsah alkoholu v nápoji [%]" text="Alkohol" />
 						{' * '}
-						<HelperTooltip title="Hustota alkoholu - konstanta" text="0.8" />
+						<Tooltip title="Hustota alkoholu - konstanta" text="0.8" />
 						{' / '}
-						<HelperTooltip title="Procenta převedeny na desetinné číslo" text="100" />
+						<Tooltip title="Procenta převedeny na desetinné číslo" text="100" />
 						{') - ('}
-						<HelperTooltip title="Čas potřebný k vystřízlivění [h]" text="x hodin" />
+						<Tooltip title="Čas potřebný k vystřízlivění [h]" text="x hodin" />
 						{' * '}
-						<HelperTooltip
-							title="Alkohol, který lidské tělo dokáže rozložit. muži: 0.1; ženy: 0.085 [g/h]"
-							text="Odbouráváno za hodinu"
-						/>
+						<Tooltip title="Alkohol, který lidské tělo dokáže rozložit. muži: 0.1; ženy: 0.085 [g/h]" text="Odbouráváno za hodinu" />
 						{' * '}
-						<HelperTooltip title="Vaše váha [kg]" text="Váha" />
+						<Tooltip title="Vaše váha [kg]" text="Váha" />
 						{')'}
 					</p>
 				</article>

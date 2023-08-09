@@ -1,7 +1,6 @@
 import Image from 'next/image';
-import Button from '@mui/material/Button';
 
-import HelperTooltip from '../../src/components/HelperTooltip';
+import Tooltip from '../../src/components/Tooltip';
 
 const DrinkRow = ({ drink, setDrink }) => {
 	return (
@@ -14,11 +13,9 @@ const DrinkRow = ({ drink, setDrink }) => {
 				{/* drink description */}
 				<p>
 					<span>{drink.name}</span>
-					<HelperTooltip
-						className="pl-1 text-sm text-gray-700 dark:text-gray-300"
-						title="Alkohol v nápoji [%]"
-						text={`${drink.alcoholVolume}%`}
-					/>
+					<Tooltip title="Alkohol v nápoji [%]">
+						<span className="pl-1 text-sm text-gray-700 dark:text-gray-300">{drink.alcoholVolume}%</span>
+					</Tooltip>
 				</p>
 			</div>
 
@@ -27,12 +24,12 @@ const DrinkRow = ({ drink, setDrink }) => {
 				<p>{drink.volume > 500 ? `${drink.volume / 1000} l` : `${drink.volume} ml`}</p>
 
 				{/* add drink */}
-				<Button
-					className="rounded-lg bg-accent/50 text-xl text-dark hover:bg-light/50 dark:text-light dark:hover:bg-dark/50"
+				<button
+					className="rounded-lg bg-accent/50 px-4 py-2 text-xl text-dark transition-colors hover:bg-light/50 dark:text-light dark:hover:bg-dark/50"
 					onClick={() => setDrink(drink.id)}
 				>
 					+
-				</Button>
+				</button>
 			</div>
 		</div>
 	);

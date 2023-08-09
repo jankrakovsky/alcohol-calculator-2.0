@@ -1,15 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { AccountCircle } from '@mui/icons-material';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
-import Button from '@mui/material/Button';
+import { AccountCircle, CloseRounded, MenuRounded } from '@mui/icons-material';
 import { signInWithPopup, signOut } from 'firebase/auth';
+import debounce from 'lodash/debounce';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { auth, provider } from '../firebase/firebaseApp';
-import HelperTooltip from './HelperTooltip';
+import Tooltip from './Tooltip';
 
 const NavBar = () => {
 	/* links for navbar */
@@ -36,10 +34,13 @@ const NavBar = () => {
 	/* open/close mobile burger menu */
 	const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
-	/* choose the screen size */
-	const handleResize = useCallback(() => {
-		if (window.innerWidth > 640) setMobileNavOpen(false);
-	}, []);
+	/* check the screen size */
+	const handleResize = useCallback(
+		debounce(() => {
+			if (window.innerWidth > 640) setMobileNavOpen(false);
+		}, 100),
+		[],
+	);
 
 	/*  add event listener and remove it on cleanup */
 	useEffect(() => {
@@ -50,26 +51,26 @@ const NavBar = () => {
 	return (
 		/* navbar wrapper that centers navbar content */
 		<section
-			className={`fixed left-0 top-0 sm:static sm:flex sm:justify-center ${
-				mobileNavOpen ? 'z-20 bg-accent-light/25 backdrop-blur dark:bg-accent-dark/25' : ''
+			className={`fixed left-0 top-0 w-full transition-all sm:static sm:flex sm:justify-center ${
+				mobileNavOpen && 'z-20 bg-accent-light/25 backdrop-blur dark:bg-accent-dark/25'
 			}`}
 		>
 			{mobileNavOpen ? (
 				/* close navigation button for mobile */
-				<Button
-					className="fixed right-0 top-0 p-6 text-accent hover:bg-transparent hover:text-accent-dark dark:hover:text-accent-light"
+				<button
+					className="fixed right-0 top-0 p-6 text-accent transition-colors hover:bg-transparent hover:text-accent-dark dark:hover:text-accent-light"
 					onClick={() => setMobileNavOpen(false)}
 				>
-					<CloseRoundedIcon />
-				</Button>
+					<CloseRounded />
+				</button>
 			) : (
 				/* open navigation button for mobile */
-				<Button
-					className="fixed right-0 top-0 rounded-bl-lg p-6 text-accent hover:bg-light hover:text-accent-dark hover:dark:bg-dark dark:hover:text-accent-light sm:hidden"
+				<button
+					className="fixed right-0 top-0 rounded-bl-lg p-6 text-accent transition-colors hover:bg-light hover:text-accent-dark hover:dark:bg-dark dark:hover:text-accent-light sm:hidden"
 					onClick={() => setMobileNavOpen(true)}
 				>
-					<MenuRoundedIcon />
-				</Button>
+					<MenuRounded />
+				</button>
 			)}
 
 			{/* navbar */}
@@ -92,8 +93,8 @@ const NavBar = () => {
 
 				{/* login/logout button */}
 				{user ? (
-					<HelperTooltip className="group" title={`Odhlásit ${user.displayName}`} onClick={() => signOut(auth)}>
-						<Button variant="ghost" className="rounded-full hover:bg-transparent dark:hover:bg-transparent">
+					<Tooltip className="group" title={`Odhlásit ${user.displayName}`} onClick={() => signOut(auth)}>
+						<button className="rounded-full hover:bg-transparent dark:hover:bg-transparent">
 							<Image
 								className="rounded-full ring ring-transparent transition duration-300 group-hover:ring-accent"
 								src={user.photoURL}
@@ -101,14 +102,14 @@ const NavBar = () => {
 								width={28}
 								height={28}
 							/>
-						</Button>
-					</HelperTooltip>
+						</button>
+					</Tooltip>
 				) : (
-					<HelperTooltip className="group" title={`Přihlásit se`} onClick={() => signInWithPopup(auth, provider)}>
-						<Button variant="ghost" className="rounded-full hover:bg-transparent dark:hover:bg-transparent">
+					<Tooltip className="group" title={`Přihlásit se`} onClick={() => signInWithPopup(auth, provider)}>
+						<button className="rounded-full hover:bg-transparent dark:hover:bg-transparent">
 							<AccountCircle fontSize="medium" className="text-accent" />
-						</Button>
-					</HelperTooltip>
+						</button>
+					</Tooltip>
 				)}
 			</nav>
 		</section>
