@@ -8,8 +8,8 @@ export default function Home() {
 		<main className="flex h-full flex-col items-center justify-center">
 			<section className="grid w-full grid-cols-1 items-center gap-4 md:grid-cols-2">
 				<div className="flex flex-col justify-center gap-6">
-					<h1 className="text-6xl text-accent dark:text-accent-light">Jsem Váš osobní rádce na alkohol!</h1>
-					<p className="text-2xl">
+					<h1 className="text-4xl text-accent dark:text-accent-light md:text-5xl">Jsem Váš osobní rádce na alkohol!</h1>
+					<p className="text-xl leading-relaxed md:text-2xl">
 						Potřebujete za volant či do práce? Pro rychlé využití přejděte rovnou do kalkulačky, vyplňte informace a vše se vypočítá za
 						Vás. Pro využítí všech funkcí se můžete přihlásit přes Google účet.
 					</p>

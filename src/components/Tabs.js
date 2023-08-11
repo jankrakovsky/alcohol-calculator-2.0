@@ -3,7 +3,7 @@ import { clsx } from 'clsx';
 
 const Tabs = ({ tabs, ...props }) => {
 	return (
-		<TabsPrimitive.Root defaultValue="tab-0">
+		<TabsPrimitive.Root defaultValue="tab-0" {...props}>
 			<TabsPrimitive.List className={clsx('flex w-full rounded-t-lg bg-white dark:bg-gray-800')}>
 				{tabs.map(({ title }, key) => (
 					<TabsPrimitive.Trigger
@@ -29,7 +29,6 @@ const Tabs = ({ tabs, ...props }) => {
 					key={`tab-content-${key}`}
 					value={`tab-${key}`}
 					className={clsx('rounded-b-lg bg-white px-6 py-4 dark:bg-gray-800')}
-					{...props}
 				>
 					{typeof value === 'function' ? value() : value}
 				</TabsPrimitive.Content>

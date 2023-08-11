@@ -26,7 +26,7 @@ export default function MyApp({ Component, pageProps }) {
 			<NavBar />
 
 			{/* main content */}
-			<div className="mx-auto max-w-screen-2xl grow px-4 pb-12 pt-20 transition-all lg:px-12 xl:px-20">
+			<div className="flex max-w-screen-2xl grow justify-center px-4 pb-12 pt-20 transition-all lg:px-12 xl:px-20">
 				{/* TODO: move provider to a closer scope */}
 				<UserDataProvider>
 					<Component {...pageProps} />

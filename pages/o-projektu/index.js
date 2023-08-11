@@ -9,11 +9,11 @@ export default function OProjektu() {
 				<title>O projektu | Alkohol kalkulačka</title>
 			</Head>
 
-			<section className="flex flex-col gap-6">
+			<section className="flex max-w-[650px] flex-col gap-6 leading-relaxed">
 				<article>
 					<h2 className="mb-4 text-2xl font-bold">Výpočet</h2>
 
-					<p>
+					<div>
 						<Tooltip title="Počet promile alkoholu v krvi [‰]" text="Alkohol v krvi" placement="top" />
 						{' = ('}
 						<Tooltip title="Množství nápoje [ml]" text="Objem" placement="top" />
@@ -28,8 +28,8 @@ export default function OProjektu() {
 						{' * '}
 						<Tooltip title="Množství vody v těle [%]" text="Voda v těle" placement="top" />
 						{')'}
-					</p>
-					<p>
+					</div>
+					<div>
 						{'Počet hodin do vystřízlivění = ('}
 						<Tooltip title="Množství nápoje [ml]" text="Objem" />
 						{' * '}
@@ -45,7 +45,7 @@ export default function OProjektu() {
 						{' * '}
 						<Tooltip title="Vaše váha [kg]" text="Váha" />
 						{')'}
-					</p>
+					</div>
 				</article>
 
 				<article>

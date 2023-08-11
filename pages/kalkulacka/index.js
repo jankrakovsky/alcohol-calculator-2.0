@@ -88,7 +88,7 @@ export default function Kalkulacka() {
 	const { soberTime, perMile } = useMemo(() => countTotalAlcoholInBody(), [countTotalAlcoholInBody]);
 
 	return (
-		<main className="h-full">
+		<main className="h-full w-full max-w-[800px]">
 			<Head>
 				<title>Kalkulačka | Alkohol kalkulačka</title>
 			</Head>
