@@ -1,13 +1,14 @@
 import { useState } from 'react';
 
+import allDrinks from '../drinks.json';
 import DrinkRow from './DrinkRow';
 
-const SearchBar = ({ drinks, setDrink }) => {
+const SearchBar = () => {
 	const [query, setQuery] = useState('');
 
 	/* return all drinks if query is empty, otherwise filters only the ones with match in keywords */
 	const filteredDrinks =
-		query === '' ? drinks : drinks.filter((drink) => drink.keywords.some((keyword) => keyword.toLowerCase().includes(query.toLowerCase())));
+		query === '' ? allDrinks : allDrinks.filter((drink) => drink.keywords.some((keyword) => keyword.toLowerCase().includes(query.toLowerCase())));
 
 	return (
 		<div className=" relative flex flex-col gap-2 rounded-xl bg-accent-light text-dark dark:bg-accent">
@@ -21,7 +22,7 @@ const SearchBar = ({ drinks, setDrink }) => {
 				{/* show all consumed drinks in DrinkRow component */}
 				<div className="max-h-[200px] overflow-scroll px-4">
 					{filteredDrinks.length > 0 ? (
-						filteredDrinks.map((drink, index) => <DrinkRow drink={drink} setDrink={setDrink} key={index} />)
+						filteredDrinks.map((drink, index) => <DrinkRow drink={drink} key={index} />)
 					) : (
 						<p className="text-sm text-gray-500 dark:text-gray-300">Žádné nápoje nebyly nalezeny</p>
 					)}

@@ -1,13 +1,18 @@
 import Image from 'next/image';
 
+import { useConsumptionContext } from '../hooks/ConsumptionContext';
 import Tooltip from './Tooltip';
 
-const DrinkCard = ({ drink, setDrink }) => {
+const DrinkCard = ({ drink, ...props }) => {
+	const { setDrink } = useConsumptionContext();
 	/* total volume of consumed drink */
 	const volume = drink.count * drink.volume;
 
 	return (
-		<div className="flex min-h-[150px] min-w-[350px] flex-row gap-6 rounded-xl bg-accent-light p-2 text-dark shadow dark:bg-accent sm:p-4">
+		<div
+			className="flex min-h-[150px] min-w-[350px] flex-row gap-6 rounded-xl bg-accent-light p-2 text-dark shadow dark:bg-accent sm:p-4"
+			{...props}
+		>
 			<div className="flex items-center">
 				<Image className="rounded-xl" src={drink.image} alt={drink.name} width={50} height={50} />
 			</div>

@@ -1,8 +1,10 @@
 import Image from 'next/image';
 
 import Tooltip from '../../src/components/Tooltip';
+import { useConsumptionContext } from '../hooks/ConsumptionContext';
 
-const DrinkRow = ({ drink, setDrink }) => {
+const DrinkRow = ({ drink }) => {
+	const { setDrink } = useConsumptionContext();
 	return (
 		<div className="flex h-[50px] flex-row justify-between gap-6 border-b-[1px] border-solid border-gray-600/20 dark:text-light">
 			<div className="flex items-center gap-4">
