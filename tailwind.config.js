@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	content: [
-		'./pages/**/*.{js,ts,jsx,tsx}',
-		'./src/components/**/*.{js,ts,jsx,tsx}'
-	],
+	content: ['./pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
 	important: '#__next',
 	theme: {
 		extend: {
@@ -16,5 +13,5 @@ module.exports = {
 			},
 		},
 	},
-	plugins: [require("tailwindcss-radix")()],
+	plugins: [require('tailwindcss-radix')],
 };

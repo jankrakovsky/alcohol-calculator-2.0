@@ -8,8 +8,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Controller, useForm } from 'react-hook-form';
 
 import { auth, db } from '../firebase/firebaseApp';
+import { useUserDataContext } from '../hooks/UserDataContext';
 import useNow from '../hooks/useNow';
-import { useUserDataContext } from '../hooks/useUserDataContext';
 
 const UserInfo = () => {
 	const [user] = useAuthState(auth);
@@ -34,6 +34,7 @@ const UserInfo = () => {
 		return res;
 	};
 
+	/* TODO: Handle form errors */
 	const onError = (errors, e) => console.log(errors, e);
 
 	return (
