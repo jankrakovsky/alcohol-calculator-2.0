@@ -8,21 +8,25 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Controller, useForm } from 'react-hook-form';
 
 import { auth, db } from '../firebase/firebaseApp';
+import useNow from '../hooks/useNow';
+import { useUserDataContext } from '../hooks/useUserDataContext';
 
-const UserInfo = ({ userData }) => {
+const UserInfo = () => {
 	const [user] = useAuthState(auth);
-	const {
-		register,
-		handleSubmit,
-		control,
-		formState: { dirtyFields },
-	} = useForm({
-		defaultValues: userData,
+	const now = useNow();
+	const { data, setData, loading, errorCode, drinkTime, setDrinkTime } = useUserDataContext();
+	const { register, handleSubmit, control } = useForm({
+		defaultValues: {
+			gender: data?.gender ?? 'male',
+			weight: data?.weight ?? 80,
+			time: drinkTime,
+		},
 	});
 
 	const onSubmit = async (data) => {
-		const profileRef = doc(db, `profiles/${user.uid}`);
+		setData(data);
 
+		const profileRef = doc(db, `profiles/${user.uid}`);
 		const res = await setDoc(profileRef, {
 			weight: data.weight,
 			gender: data.gender,
@@ -39,7 +43,7 @@ const UserInfo = ({ userData }) => {
 				<label className="dark:text-dark">Vyberte Vaše pohlaví</label>
 				<div className="flex flex-col gap-2 dark:text-dark">
 					<span>
-						<input id="male" {...register('gender')} type="radio" value="male" defaultChecked />
+						<input id="male" {...register('gender')} type="radio" value="male" />
 						<label className="pl-2">Muž</label>
 					</span>
 					<span>
@@ -75,7 +79,10 @@ const UserInfo = ({ userData }) => {
 								minuteStep={15}
 								allowEmpty={false}
 								onBlur={onBlur}
-								onChange={(val) => onChange(val ? val.toDate() : null)}
+								onChange={(val) => {
+									setDrinkTime(val ? val.toDate() : now);
+									onChange(val ? val.toDate() : now);
+								}}
 								value={moment(value)}
 							/>
 						)}

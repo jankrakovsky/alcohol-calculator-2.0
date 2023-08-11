@@ -3,6 +3,7 @@ import Head from 'next/head';
 import '../styles/globals.css';
 import NavBar from '../src/components/NavBar';
 import useNow from '../src/hooks/useNow';
+import { UserDataProvider } from '../src/hooks/useUserDataContext';
 
 export default function MyApp({ Component, pageProps }) {
 	/* current year to display in footer */
@@ -26,12 +27,19 @@ export default function MyApp({ Component, pageProps }) {
 
 			{/* main content */}
 			<div className="mx-auto max-w-screen-2xl grow px-4 pb-12 pt-20 transition-all lg:px-12 xl:px-20">
-				<Component {...pageProps} />
+				{/* TODO: move provider to a closer scope */}
+				<UserDataProvider>
+					<Component {...pageProps} />
+				</UserDataProvider>
 			</div>
 
 			{/* footer */}
-			<footer className="w-full border-t-2 border-solid border-accent-light p-4 text-center dark:border-accent">
-				<p>Copyright © {currentYear} | Alkohol kalkulačka - Všechna práva vyhrazena</p>
+			<footer className="w-full border-t-2 border-solid border-accent-light p-2 text-center dark:border-accent sm:p-4">
+				{/* desktop only */}
+				<p className="hidden sm:block">Copyright © {currentYear} | Alkohol kalkulačka - Všechna práva vyhrazena</p>
+				{/* mobile only */}
+				<p className="block text-sm sm:hidden">Copyright © {currentYear}</p>
+				<p className="block text-sm sm:hidden">Alkohol kalkulačka - Všechna práva vyhrazena</p>
 			</footer>
 		</div>
 	);
