@@ -1,13 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import { AccountCircle, CloseRounded, MenuRounded } from '@mui/icons-material';
-import { signInWithPopup, signOut } from 'firebase/auth';
+import { CloseRounded, MenuRounded } from '@mui/icons-material';
 import debounce from 'lodash/debounce';
-import { useAuthState } from 'react-firebase-hooks/auth';
 
-import { auth, provider } from '../firebase/firebaseApp';
-import Tooltip from './Tooltip';
+import UserDataDialog from './UserDataDialog';
 
 const NavBar = () => {
 	/* links for navbar */
@@ -28,8 +24,6 @@ const NavBar = () => {
 		],
 		[],
 	);
-
-	const [user] = useAuthState(auth);
 
 	/* open/close mobile burger menu */
 	const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -91,26 +85,7 @@ const NavBar = () => {
 					</Link>
 				))}
 
-				{/* login/logout button */}
-				{user ? (
-					<Tooltip className="group" title={`Odhlásit ${user.displayName}`} onClick={() => signOut(auth)}>
-						<button className="rounded-full hover:bg-transparent dark:hover:bg-transparent">
-							<Image
-								className="rounded-full ring ring-transparent transition duration-300 group-hover:ring-accent"
-								src={user.photoURL}
-								alt={user.displayName}
-								width={28}
-								height={28}
-							/>
-						</button>
-					</Tooltip>
-				) : (
-					<Tooltip className="group" title={`Přihlásit se`} onClick={() => signInWithPopup(auth, provider)}>
-						<button className="rounded-full hover:bg-transparent dark:hover:bg-transparent">
-							<AccountCircle fontSize="medium" className="text-accent" />
-						</button>
-					</Tooltip>
-				)}
+				<UserDataDialog />
 			</nav>
 		</section>
 	);
