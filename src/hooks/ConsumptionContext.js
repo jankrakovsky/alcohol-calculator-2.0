@@ -5,7 +5,7 @@ import useNow from './useNow';
 
 const ConsumptionContext = createContext();
 
-export const UserDataProvider = ({ children }) => {
+export const ConsumptionProvider = ({ children }) => {
 	const now = useNow();
 	const [drinkTime, setDrinkTime] = useState(now);
 	const [data, setData] = useState([]);
