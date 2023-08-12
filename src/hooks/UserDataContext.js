@@ -1,22 +1,51 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { auth, db } from '../firebase/firebaseApp';
 import useNow from './useNow';
 
-const UserDataContext = createContext();
+const UserDataContext = createContext({
+	data: null,
+	setData: () => {},
+	loading: true,
+	errorCode: null,
+	fetchData: () => {},
+});
 
 export const UserDataProvider = ({ children }) => {
 	const now = useNow();
 	const [user, loading] = useAuthState(auth);
-	const [data, setData] = useState({
-		gender: 'male',
-		weight: 80,
-	});
+	const [data, setData] = useState(null);
 	const [dataLoading, setDataLoading] = useState(true);
 	const [errorCode, setErrorCode] = useState(null);
-	const [drinkTime, setDrinkTime] = useState(now);
+
+	const fetchData = useCallback(async () => {
+		setDataLoading(true);
+		const docRef = doc(db, `profiles/${user.uid}`);
+
+		try {
+			const docSnap = await getDoc(docRef);
+
+			if (docSnap.exists()) {
+				const snapData = docSnap.data();
+				setData({
+					gender: snapData.gender,
+					weight: snapData.weight,
+					metric: snapData.metric,
+				});
+				console.log('ive set data in user fetch function', data);
+				setErrorCode(null);
+			} else {
+				setErrorCode('USER_DATA_NOT_FOUND');
+			}
+		} catch (error) {
+			setErrorCode('FETCH_ERROR');
+			console.error('Error fetching user data: ', error);
+		} finally {
+			setDataLoading(false);
+		}
+	}, [user?.uid]);
 
 	useEffect(() => {
 		if (loading) {
@@ -29,28 +58,10 @@ export const UserDataProvider = ({ children }) => {
 			setDataLoading(false);
 			return;
 		}
+		fetchData();
+	}, [user, loading, fetchData]);
 
-		setDataLoading(true);
-		const docRef = doc(db, `profiles/${user.uid}`);
-
-		getDoc(docRef).then((docSnap) => {
-			if (docSnap.exists()) {
-				const snapData = docSnap.data();
-				setData({
-					gender: snapData.gender,
-					weight: snapData.weight,
-				});
-				/* clear any existing error code */
-				setErrorCode(null);
-			} else {
-				setErrorCode('USER_DATA_NOT_FOUND');
-			}
-
-			setDataLoading(false);
-		});
-	}, [user, loading]);
-
-	const value = { data, setData, loading: dataLoading, errorCode, drinkTime, setDrinkTime };
+	const value = { data, setData, loading: dataLoading, errorCode, fetchData };
 
 	return <UserDataContext.Provider value={value}>{children}</UserDataContext.Provider>;
 };
