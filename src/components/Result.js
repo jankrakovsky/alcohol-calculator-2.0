@@ -46,7 +46,7 @@ const Result = () => {
 		}
 	}, [drinkData, data, countTimeWhenSober]);
 
-	const result = useMemo(() => (data ? countTotalAlcoholInBody() : null), [countTotalAlcoholInBody]);
+	const result = useMemo(() => (data ? countTotalAlcoholInBody() : null), [countTotalAlcoholInBody, data]);
 
 	return data ? (
 		<article>

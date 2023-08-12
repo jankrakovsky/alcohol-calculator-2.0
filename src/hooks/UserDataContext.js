@@ -34,7 +34,6 @@ export const UserDataProvider = ({ children }) => {
 					weight: snapData.weight,
 					metric: snapData.metric,
 				});
-				console.log('ive set data in user fetch function', data);
 				setErrorCode(null);
 			} else {
 				setErrorCode('USER_DATA_NOT_FOUND');
